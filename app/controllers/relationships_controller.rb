@@ -1,6 +1,7 @@
 # RelationshipsController
 # For theFacebook
 class RelationshipsController < ApplicationController
+  # Make sure user is signed in:
   before_action :signed_in_user
 
   def create
