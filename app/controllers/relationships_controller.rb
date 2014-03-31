@@ -1,3 +1,5 @@
+# RelationshipsController
+# For theFacebook
 class RelationshipsController < ApplicationController
   before_action :signed_in_user
 
