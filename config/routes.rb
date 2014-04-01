@@ -9,7 +9,7 @@ SampleApp::Application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   root  'static_pages#home'
-  match '/signup',  to: 'users#new',            via: 'get'
+  match '/signup',  to: 'users#new',            via: 'get' # This is the signup route.
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/help',    to: 'static_pages#help',    via: 'get'
