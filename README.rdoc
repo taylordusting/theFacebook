@@ -1,28 +1,19 @@
-== README
+theFacebook
+===========
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Team Members:
+* Sam Beckett
+* Dustin Taylor
+* Jenna Raderstrong
 
-Things you may want to cover:
+The project is a simple facebook clone developed using Ruby on Rails. 
 
-* Ruby version
+### Models, views, and controllers:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* User - this MVC is the model, view, and controller for the users, which is responsible for storing information about the user account and information
+* Post - this MVC is the model, view, and controller for the status updates and wall posts that the users create
+* Relationship - this MVC is the model, view, and controller responsible for keeping track of how many friends each user has. 
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+ 

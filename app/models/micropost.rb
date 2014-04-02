@@ -1,4 +1,5 @@
 class Micropost < ActiveRecord::Base
+	# Random comment!
   belongs_to :user
   default_scope -> { order('created_at DESC') }
   validates :content, presence: true
