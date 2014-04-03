@@ -2,7 +2,7 @@ Feature: Signed in user
 
 Scenario: Navigate to homepage
   Given I am logged in
-  And I am on the home
+  And I am on the Facebook homepage
   Then I should see "News Feed"
 
 Scenario: Profile Page

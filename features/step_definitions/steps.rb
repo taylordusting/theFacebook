@@ -13,13 +13,12 @@ And /^I am not logged in$/ do
 end
 
 Given /^I am logged in$/ do
-  email = 'samuel.beckett@colorado.edu'
-  password = 'password'
-  
-
+  #email = 'samuel.beckett@colorado.edu'
+  #password = 'password'
+  @user = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
   visit '/signin'
-  fill_in "session_email", :with => email
-  fill_in "session_password", :with => password
+  fill_in "Email",    with: @user.email
+  fill_in "Password", with: @user.password
   click_button "Sign in"
 end
 
