@@ -1,9 +1,9 @@
 Feature: Signed in user
 
 Scenario: Navigate to homepage
-  Given I am signed in
+  Given I am logged in
   When I follow "Home"
-  Then I should see my News Feed
+  Then I should see "News Feed"
 
 Scenario: Profile Page
   Given I am on my profile page

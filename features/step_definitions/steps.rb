@@ -12,6 +12,12 @@ And /^I am not logged in$/ do
 	visit path_to('home')
 end
 
+Given /^I am logged in$/ do
+	visit path_to('home')
+end
+
+
+
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
@@ -20,6 +26,6 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 
-Then /^I should see the "(.*)" page$/ do |e1|
+Then /^I should see "(.*)"$/ do |e1|
 	page.body =~ /#{e1}/m ? nil : raise("Not working")
 end
