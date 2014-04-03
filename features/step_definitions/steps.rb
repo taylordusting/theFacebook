@@ -13,25 +13,26 @@ And /^I am not logged in$/ do
 end
 
 Given /^I am logged in$/ do
-  name = 'Bobby Brown'
-  email = 'testing@man.net'
-  password = 'secretpass'
-  User.new(:name => name, :email => email, :password => password, :password_confirmation => password).save!
+  email = 'samuel.beckett@colorado.edu'
+  password = 'password'
+  
 
   visit '/signin'
-  fill_in "user_name", :with => name
-  fill_in "user_email", :with => email
-  fill_in "user_password", :with => password
+  fill_in "session_email", :with => email
+  fill_in "session_password", :with => password
   click_button "Sign in"
 end
 
-
+#And /^(?:|I )am on (.+)$/ do |page_name|
+#  visit path_to(page_name)
+#end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
+  #visit path_to(link)
   click_link(link)
 end
 

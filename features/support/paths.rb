@@ -16,6 +16,7 @@ module NavigationHelpers
     when /^the (Facebook )?home\s?page$/ then '/home'
     when /^the (Sign Up )?page$/ then '/signup'
     when /^home$/ then '/home'
+    when /^the home$/ then '/home'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
