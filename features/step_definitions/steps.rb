@@ -13,7 +13,16 @@ And /^I am not logged in$/ do
 end
 
 Given /^I am logged in$/ do
-	visit path_to('home')
+  name = 'Bobby Brown'
+  email = 'testing@man.net'
+  password = 'secretpass'
+  User.new(:name => name, :email => email, :password => password, :password_confirmation => password).save!
+
+  visit '/signin'
+  fill_in "user_name", :with => name
+  fill_in "user_email", :with => email
+  fill_in "user_password", :with => password
+  click_button "Sign in"
 end
 
 
