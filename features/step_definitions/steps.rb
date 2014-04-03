@@ -23,9 +23,11 @@ Given /^I am logged in$/ do
   click_button "Sign in"
 end
 
+
 #And /^(?:|I )am on (.+)$/ do |page_name|
 #  visit path_to(page_name)
 #end
+
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
@@ -41,15 +43,21 @@ Then /^I should see "(.*)"$/ do |e1|
 end
 
 
-# -------------------------- PENDING -------------------------- #
-
 When(/^I create an account$/) do
-  pending # express the regexp above with the code you wish you had
+  @user = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
 end
 
 Then(/^I should be on the profile page$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(page).to have_content(@user.name)
 end
+
+When(/^I sign in$/) do
+  fill_in "Email",    with: @user.email
+  fill_in "Password", with: @user.password
+  click_button "Sign in"
+end
+
+# -------------------------- PENDING -------------------------- #
 
 Given(/^I am signed in$/) do
   pending # express the regexp above with the code you wish you had

@@ -12,13 +12,13 @@ Scenario: Profile Page
   And I can see my Wall
 
 Scenario: Profile preferences friends list
-  Given that I am logged in
+  Given I am logged in
   And I go to the profile preferences page
   Then I should see a list of my friends
   And an option to unfriend people
 
 Scenario: Update profile preferences
-  Given the I am logged in
+  Given I am logged in
   And I go to the profile prefrences page
   Then I should be able to edit my Interests
   And I should be able to edit my Quotes
