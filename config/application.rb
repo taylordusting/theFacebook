@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 # My Comment by Sam Beckett (Who is amazing)
 #Added comment by Jenna
+#This is the page where the frameworks are set up. 
 # Pick the frameworks you want:
 require "active_record/railtie"
 require "action_controller/railtie"
