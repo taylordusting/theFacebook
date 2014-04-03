@@ -20,19 +20,38 @@
   <div class="center hero-unit">
     <h1>Welcome to The Facebook</h1>
 
-    <h2>
+    <!--<h2>
       This is the home page for the
       <a href="http://facebook.com">The Facebook</a>
       app
     </h2>
 
-    <%= link_to "Sign up now!", signup_path, id: "Sign up now!", class: "btn btn-large btn-inverse" %>
+    <%= link_to "Sign up now!", signup_path, id: "Sign up now!", class: "btn btn-large btn-inverse" %>-->
   </div>
 
-<div class="center">
+  <h1>Sign in</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:session, url: sessions_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Sign in", class: "btn btn-large btn-inverse" %>
+    <% end %>
+
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</div>
+
+<!--<div class="center">
 
 <%= link_to image_tag("facebook-2.png", alt: "Rails"), 'http://facebook.com/' %>
 
-</div>
+</div>-->
 
 <% end %>
