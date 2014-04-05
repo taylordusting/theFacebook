@@ -25,7 +25,7 @@ Scenario: Update profile preferences
   When I click "Save Changes" the page should reload with the updated information
 
 Scenario: Navigate to other users profile page
-  Given I am friends with someone
-  When I click their profile name
+  Given I am logged in
+  When I click another user's profile name
   Then I should be on their profile page
   And I should see their Wall

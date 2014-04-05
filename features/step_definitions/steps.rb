@@ -18,16 +18,18 @@ end
 Given /^I am logged in$/ do
   #email = 'samuel.beckett@colorado.edu'
   #password = 'password'
-  @user = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
+  @user = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar", 
+                      quotes: "foobar", interests: "foobar")
   visit '/signin'
   fill_in "Email",    with: @user.email
   fill_in "Password", with: @user.password
   click_button "Sign in"
 end
 
-<<<<<<< HEAD
-When /^(?:|I )press "([^"]*)"$/ do |button|
-=======
+
+When /^(?:|I )press "([^\"]*)"$/ do |button|
+    click_button(button)
+end
 
 #And /^(?:|I )am on (.+)$/ do |page_name|
 #  visit path_to(page_name)
@@ -35,7 +37,6 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
 
 
 When /^(?:|I )press "([^\"]*)"$/ do |button|
->>>>>>> 2934130737010474790df7ffb85a28db35d3583d
   click_button(button)
 end
 
@@ -50,7 +51,13 @@ end
 
 
 When(/^I create an account$/) do
-  @user = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar", quotes: "foobar", interests: "foobar")
+  @user = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar", 
+                      quotes: "foobar", interests: "foobar")
+  visit '/signup'
+  fill_in "Name",    with: @user.name
+  fill_in "Email",    with: @user.email
+  fill_in "Password", with: @user.password
+  fill_in "Confirmation", with: @user.password_confirmation
 end
 
 Then /^I should be on the Sign Up page$/ do
@@ -58,7 +65,8 @@ Then /^I should be on the Sign Up page$/ do
 end
 
 Then(/^I should be on the profile page$/) do
-  expect(page).to have_content(@user.name)
+  visit '/users/:id(.:format)'
+  #click_button "Create my account"
 end
 
 When(/^I sign in$/) do
