@@ -10,7 +10,12 @@
     <section>
       <%= render 'shared/stats' %>
     </section>
+    <div>
+    Interests/Quotes go here
+    </div>
   </aside>
+
+
   <div class="span8">
     <%= render 'follow_form' if signed_in? %>
     <% if @user.microposts.any? %>
