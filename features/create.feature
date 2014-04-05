@@ -15,5 +15,4 @@ Scenario: Set up profile page
   Given I am on the Sign Up page
   And I am not logged in
   When I create an account
-  And I sign in
   Then I should be on the profile page
