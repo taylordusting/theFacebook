@@ -33,7 +33,6 @@ class User < ActiveRecord::Base
 
   def follow!(other_user)
     relationships.create!(followed_id: other_user.id)
-    #relationships.create!(followed_id: user.id)
   end
 
   def unfollow!(other_user)

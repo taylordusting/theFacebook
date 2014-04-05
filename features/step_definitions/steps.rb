@@ -22,12 +22,6 @@ Given /^I am logged in$/ do
   click_button "Sign in"
 end
 
-
-#And /^(?:|I )am on (.+)$/ do |page_name|
-#  visit path_to(page_name)
-#end
-
-
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
