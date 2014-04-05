@@ -12,6 +12,9 @@ And /^I am not logged in$/ do
 	visit path_to('home')
 end
 
+Then(/^I should see Sign in$/) do
+  pending # express the regexp above with the code you wish you had
+end
 Given /^I am logged in$/ do
   #email = 'samuel.beckett@colorado.edu'
   #password = 'password'
@@ -28,11 +31,11 @@ end
 #end
 
 
-When /^(?:|I )press "([^"]*)"$/ do |button|
+When /^(?:|I )press "([^\"]*)"$/ do |button|
   click_button(button)
 end
 
-When /^(?:|I )follow "([^"]*)"$/ do |link|
+When /^(?:|I )follow "([^\"]*)"$/ do |link|
   #visit path_to(link)
   click_link(link)
 end
@@ -43,7 +46,11 @@ end
 
 
 When(/^I create an account$/) do
-  @user = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
+  @user = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar", quotes: "foobar", interests: "foobar")
+end
+
+Then /^I should be on the Sign Up page$/ do
+  expect(page).to have_content(@user.name)
 end
 
 Then(/^I should be on the profile page$/) do
@@ -56,11 +63,19 @@ When(/^I sign in$/) do
   click_button "Sign in"
 end
 
-# -------------------------- PENDING -------------------------- #
+And(/^I go to the profile preferences page$/) do
+  visit_path_to('profilepreferences')
+end
 
-Given(/^I am signed in$/) do
+Then(/^I should be able to edit my Interests$/) do
   pending # express the regexp above with the code you wish you had
 end
+
+Then(/^I should be able to edit my Quotes$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+# -------------------------- PENDING -------------------------- #
 
 Then(/^I should see my News Feed$/) do
   pending # express the regexp above with the code you wish you had
@@ -94,21 +109,6 @@ Then(/^an option to unfriend people$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Given(/^the I am logged in$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^I go to the profile prefrences page$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should be able to edit my Interests$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should be able to edit my Quotes$/) do
-  pending # express the regexp above with the code you wish you had
-end
 
 When(/^I click "(.*?)" the page should reload with the updated information$/) do |arg1|
   pending # express the regexp above with the code you wish you had
