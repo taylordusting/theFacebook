@@ -24,7 +24,6 @@ Given /^I am logged in$/ do
   fill_in "Email",    with: @user.email
   fill_in "Password", with: @user.password
   click_button "Sign in"
-  visit path_to('home')
 end
 
 
@@ -80,6 +79,24 @@ When(/^I sign in$/) do
   click_button "Sign in"
 end
 
+When(/^I click a user's profile name$/) do
+  all(:xpath, "//a[@href='/users/1']")[1].click
+  #page.all(:link, "Dustin Taylor")[0].click #click first href link on page
+end
+
+Then(/^I should see their Wall$/) do
+  expect(page).to have_content("Wall")
+end
+
+And /^I click the Users button$/ do
+  click_link("Users")
+end
+
+Then /^I should see All users$/ do
+  expect(page).to have_content("All users")
+end
+
+
 And(/^I go to the profile preferences page$/) do
   visit_path_to('profilepreferences')
 end
@@ -132,18 +149,6 @@ When(/^I click "(.*?)" the page should reload with the updated information$/) do
 end
 
 Given(/^I am friends with someone$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-When(/^I click their profile name$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should be on their profile page$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should see their Wall$/) do
   pending # express the regexp above with the code you wish you had
 end
 

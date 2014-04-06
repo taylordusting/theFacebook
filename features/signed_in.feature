@@ -26,6 +26,7 @@ Scenario: Update profile preferences
 
 Scenario: Navigate to other users profile page
   Given I am logged in
-  When I click another user's profile name
-  Then I should be on their profile page
-  And I should see their Wall
+  And I click the Users button
+  Then I should see All users
+  When I click a user's profile name
+  Then I should see their Wall
