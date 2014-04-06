@@ -24,6 +24,7 @@ Given /^I am logged in$/ do
   fill_in "Email",    with: @user.email
   fill_in "Password", with: @user.password
   click_button "Sign in"
+  visit path_to('home')
 end
 
 
@@ -49,24 +50,28 @@ Then /^I should see "(.*)"$/ do |e1|
 	page.body =~ /#{e1}/m ? nil : raise("Not working")
 end
 
-
-When(/^I create an account$/) do
-  @user = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar", 
-                      quotes: "foobar", interests: "foobar")
-  visit '/signup'
-  fill_in "Name",    with: @user.name
-  fill_in "Email",    with: @user.email
-  fill_in "Password", with: @user.password
-  fill_in "Confirmation", with: @user.password_confirmation
+Given /^I visit the signup page$/ do
+  visit signup_path
 end
 
-Then /^I should be on the Sign Up page$/ do
+When /^I submit valid signup information$/ do
+  fill_in "Name",     with: "Example User"
+  fill_in "Email",    with: "user@example.com"
+  fill_in "Password", with: "foobar"
+  fill_in "Confirmation", with: "foobar"
+  click_button "Create my account"
+end
+
+Then /^I should see the profile page$/ do
+  expect(page).to have_title("Example User")
+end
+
+Then /^I should see the signout link$/ do
+  expect(page).to have_link('Sign out', href: signout_path)
+end
+
+Then(/^I should be on the Sign Up page$/) do
   expect(page).to have_content(@user.name)
-end
-
-Then(/^I should be on the profile page$/) do
-  visit '/users/:id(.:format)'
-  #click_button "Create my account"
 end
 
 When(/^I sign in$/) do
