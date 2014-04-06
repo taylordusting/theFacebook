@@ -6,7 +6,9 @@ Scenario: Navigate to homepage
   Then I should see "News Feed"
 
 Scenario: Profile Page
-  Given I am on my profile page
+  Given I am logged in 
+  And I am on my profile page
+  When I click My Profile
   Then I can see my Interests
   And I can see my Quotes
   And I can see my Wall

@@ -15,6 +15,7 @@ end
 Then(/^I should see Sign in$/) do
   pending # express the regexp above with the code you wish you had
 end
+
 Given /^I am logged in$/ do
   #email = 'samuel.beckett@colorado.edu'
   #password = 'password'
@@ -25,7 +26,6 @@ Given /^I am logged in$/ do
   fill_in "Password", with: @user.password
   click_button "Sign in"
 end
-
 
 When /^(?:|I )press "([^\"]*)"$/ do |button|
     click_button(button)
@@ -96,6 +96,21 @@ Then /^I should see All users$/ do
   expect(page).to have_content("All users")
 end
 
+When /^I click My Profile$/ do
+  click_link("My Profile")
+end
+
+Then(/^I can see my Interests$/) do
+  expect(page).to have_content("Interests")
+end
+
+Then(/^I can see my Quotes$/) do
+  expect(page).to have_content("Quotes")
+end
+
+Then(/^I can see my Wall$/) do
+  expect(page).to have_content("Wall")
+end
 
 And(/^I go to the profile preferences page$/) do
   visit_path_to('profilepreferences')
@@ -115,23 +130,7 @@ Then(/^I should see my News Feed$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I can see my Interests$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I can see my Quotes$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I can see my Wall$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
 Given(/^that I am logged in$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^I go to the profile preferences page$/) do
   pending # express the regexp above with the code you wish you had
 end
 
