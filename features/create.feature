@@ -12,7 +12,7 @@ Scenario: Add account
   Then I should see "Sign up"
 
 Scenario: Set up profile page
-  Given I am on the Sign Up page
-  And I am not logged in
-  When I create an account
-  Then I should be on the profile page
+  Given I visit the signup page
+    When I submit valid signup information
+    Then I should see the profile page
+    And I should see the signout link

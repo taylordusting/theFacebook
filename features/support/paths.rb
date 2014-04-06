@@ -17,6 +17,7 @@ module NavigationHelpers
     when /^the (Sign Up )?page$/ then '/signup'
     when /^home$/ then '/home'
     when /^the home$/ then '/home'
+    when /^my (profile )?page$/ then '/users'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

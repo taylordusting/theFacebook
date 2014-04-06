@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: {case_sensitive: false}
 	has_secure_password
 	validates :password, length: { minimum: 6 }
-  validates :quotes, length: { minimum: 0 }
-  validates :interests, length: { minimum: 0 }
+  
+  
 
 
   def User.new_remember_token
@@ -35,7 +35,6 @@ class User < ActiveRecord::Base
 
   def follow!(other_user)
     relationships.create!(followed_id: other_user.id)
-    #relationships.create!(followed_id: user.id)
   end
 
   def unfollow!(other_user)
