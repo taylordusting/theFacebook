@@ -20,7 +20,7 @@ Given /^I am logged in$/ do
   #email = 'samuel.beckett@colorado.edu'
   #password = 'password'
   @user = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar", 
-                      quotes: "foobar", interests: "foobar")
+                      quotes: "xyz", interests: "foobar")
   visit '/signin'
   fill_in "Email",    with: @user.email
   fill_in "Password", with: @user.password
@@ -100,6 +100,19 @@ When /^I click My Profile$/ do
   click_link("My Profile")
 end
 
+When /^I click Update Profile Info$/ do
+  click_link("Update Profile Info")
+end
+
+Then(/^I fill in "(.*?)" with "(.*?)"$/) do |arg1, arg2|
+  fill_in arg1, with: arg2
+end
+
+When(/^I click "(.*?)" the page should reload with the updated information$/) do |arg1|
+  click_button(arg1)
+  #(@user.quotes).should equal("xyz")
+end
+
 Then(/^I can see my Interests$/) do
   expect(page).to have_content("Interests")
 end
@@ -116,6 +129,12 @@ And(/^I go to the profile preferences page$/) do
   visit_path_to('profilepreferences')
 end
 
+# -------------------------- PENDING -------------------------- #
+
+And(/^the fields should be filled in with the updated information$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
 Then(/^I should be able to edit my Interests$/) do
   pending # express the regexp above with the code you wish you had
 end
@@ -123,8 +142,6 @@ end
 Then(/^I should be able to edit my Quotes$/) do
   pending # express the regexp above with the code you wish you had
 end
-
-# -------------------------- PENDING -------------------------- #
 
 Then(/^I should see my News Feed$/) do
   pending # express the regexp above with the code you wish you had
@@ -142,12 +159,6 @@ Then(/^an option to unfriend people$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-
-When(/^I click "(.*?)" the page should reload with the updated information$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
 Given(/^I am friends with someone$/) do
   pending # express the regexp above with the code you wish you had
 end
-
