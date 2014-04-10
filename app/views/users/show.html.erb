@@ -8,16 +8,35 @@
       </h1>
     </section>
     <section>
-      <%= render 'shared/stats' %>
+      <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post%>
+<h2>Friends</h2>
+<ul>
+
+  <% for friendship in @user.friendships %>
+    <li>
+      <%=h friendship.user.name %>
+      (<%= link_to "remove", friendship, :method => :destroy %>)
+    </li>
+  <% end %>
+</ul>
+ 
     </section>
     <div>
     Interests/Quotes go here
     </div>
   </aside>
 
+<p><%= link_to "Find Friends", users_path %></p>
+
+<h2>Friended by Users</h2>
+<ul>
+  <% for user in @user.inverse_friends %>
+    <li><%= @user.name %></li>
+  <% end %>
+</ul>
 
   <div class="span8">
-    <%= render 'follow_form' if signed_in? %>
+
     <h3>Wall (<%= @user.microposts.count %>)</h3>
     <% if @user.microposts.any? %>
       <ol class="microposts">
@@ -27,3 +46,4 @@
     <% end %>
   </div>
 </div>
+

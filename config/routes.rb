@@ -1,13 +1,15 @@
 SampleApp::Application.routes.draw do
+  resources :friendships
+
   resources :users do
     member do
-      get :following, :followers
+      get :friendships
     end
   end
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
-  resources :relationships, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy]
   root  'static_pages#home'
   match '/home',  to: 'static_pages#home',            via: 'get'
   match '/signup',  to: 'users#new',            via: 'get' # This is the signup route.
