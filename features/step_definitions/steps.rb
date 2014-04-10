@@ -110,7 +110,7 @@ end
 
 When(/^I click "(.*?)" the page should reload with the updated information$/) do |arg1|
   click_button(arg1)
-  #(@user.quotes).should equal("xyz")
+  (@user.quotes).should equal("xyz")
 end
 
 Then(/^I can see my Interests$/) do

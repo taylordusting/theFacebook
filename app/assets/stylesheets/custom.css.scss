@@ -63,6 +63,16 @@ p {
 }
 
 
+/* navbar */
+
+.navbar {
+  li {
+      float: left;
+      margin-left: 10px;
+      text-transform:capitalize;
+    }
+}
+
 /* header */
 
 #logo {
@@ -76,7 +86,7 @@ p {
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: white;
+    color: $grayMediumLight;
     text-decoration: none;
   }
 }
