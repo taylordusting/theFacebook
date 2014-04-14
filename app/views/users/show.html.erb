@@ -8,14 +8,18 @@
       </h1>
     </section>
     <section>
-      <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post%>
+      <%= button_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %>
+      <!--<%= form_for(current_user.friendships.build(friend_id: @user), :method => :post) do |f| %>
+        <div><%= f.hidden_field :friend_id %></div>
+        <%= f.submit "Add Friend", class: "btn btn-large btn-inverse" %>
+      <% end %>-->
 <h2>Friends</h2>
 <ul>
 
-  <% for friendship in @user.friendships %>
+  <% for user in @user.friends %>
     <li>
-      <%=h friendship.user.name %>
-      (<%= link_to "remove", friendship, :method => :destroy %>)
+      <%=h user.name %>
+      (<%= link_to "remove", user, :method => :destroy %>)
     </li>
   <% end %>
 </ul>
@@ -27,13 +31,6 @@
   </aside>
 
 <p><%= link_to "Find Friends", users_path %></p>
-
-<h2>Friended by Users</h2>
-<ul>
-  <% for user in @user.inverse_friends %>
-    <li><%= @user.name %></li>
-  <% end %>
-</ul>
 
   <div class="span8">
 
