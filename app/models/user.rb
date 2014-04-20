@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :microposts, dependent: :destroy
+  has_many :wallposts, dependent: :destroy
   has_many :friendships
   has_many :friends, :through => :friendships
   
@@ -23,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    Micropost.from_users_followed_by(self)
+    Micropost.from_users_friended_by(self)
   end
 
   #def following?(other_user)
