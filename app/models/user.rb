@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :wallposts, dependent: :destroy
   has_many :friendships
   has_many :friends, :through => :friendships
+  has_many :requested_friends, :through => :friendships, :source => :friend, :conditions => "status = 'requested'"
   
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token

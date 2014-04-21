@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20140421143517) do
+=======
 ActiveRecord::Schema.define(version: 20140420213109) do
+>>>>>>> bb13462fb4ee51cb781e47679209866c789c2010
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -20,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140420213109) do
     t.string   "destroy"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
   end
 
   create_table "microposts", force: true do |t|
