@@ -2,15 +2,28 @@ class FriendshipsController < ApplicationController
   before_action :set_friendship, only: [:show, :edit, :update, :destroy]
   before_filter :setup_friends
 
-  # GET /friendships
-  # GET /friendships.json
-  def index
-    @user = User.find(current_user.id)
-    @friend = User.find(params[:id])
+  def create
     Friendship.request(@user,@friend)
     flash[:notice] = "Friend request sent."
     redirect_to url_for(@friend)
   end
+  
+  def destroy
+    Friendship.breakup(@user,@friend)
+    #@friendship = current_user.friendships.find(params[:id])
+    #@friendship.destroy
+    flash[:notice] = "Removed friendship."
+    redirect_to current_user
+  end
+  # GET /friendships
+  # GET /friendships.json
+  #def index
+   # @user = User.find(current_user.id)
+    #@friend = User.find(params[:id])
+    #Friendship.request(@user,@friend)
+    #flash[:notice] = "Friend request sent."
+    #redirect_to url_for(@friend)
+  #end
   #def index
    # @friendships = Friendship.all
   #end
@@ -46,20 +59,7 @@ class FriendshipsController < ApplicationController
     redirect_to root_path
   end
 
-  def create
-    Friendship.request(@user,@friend)
-    flash[:notice] = "Friend request sent."
-    redirect_to url_for(@friend)
-  end
   
-  def destroy
-    
-    Friendship.breakup(@user,@friend)
-    #@friendship = current_user.friendships.find(params[:id])
-    #@friendship.destroy
-    flash[:notice] = "Removed friendship."
-    redirect_to current_user
-  end
 
  # def update
    # respond_to do |format|
@@ -87,7 +87,7 @@ class FriendshipsController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    #Use callbacks to share common setup or constraints between actions.
     def set_friendship
       @friendship = Friendship.find(params[:id])
     end

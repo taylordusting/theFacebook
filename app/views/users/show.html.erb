@@ -7,12 +7,7 @@
         <%= @user.name %>
       </h1>
     </section>
-    <section>
-      <!--<%= button_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %> -->
-      <!--<%= form_for(current_user.friendships.build(friend_id: @user), :method => :post) do |f| %>
-        <div><%= f.hidden_field :friend_id %></div>
-        <%= f.submit "Add Friend", class: "btn btn-large btn-inverse" %>
-      <% end %>-->
+    
 
 <h2>Friends</h2>
 <% if current_user?(@user) %>
@@ -20,7 +15,9 @@
 <section>
   <% unless current_user.requested_friends.empty? %>
   <% current_user.requested_friends.each do |requester| %>
+  
   <%= link_to "Accept #{requester.name}'s friend request", accept_friendship_path(requester.id), :method => :post %>
+
   <% end %>
   <% end %>
 </section>
@@ -32,17 +29,14 @@
    <% if friendship.status == "accepted" %> 
    <li>  
       <%= h friendship.friend.name %>  
-      (<%= link_to "remove", friendships_path(:id => @user), :method => :delete, data: { confirm: 'Are you sure you want to remove this friend?' } %>)  
+      (<%= link_to "remove", friendship_path(:id => @user), :method => :delete , data: { confirm: 'Are you sure you want to remove this friend?' } %>)  
    </li>
    <% end %>  
   <% end %>
 <% else %>
-<% unless Friendship.exists?(@current_user.id, @user.id) %>
-  <br />
+
   <%= button_to "Add Friend", friendships_path(:id => @user), :method => :post %>
   
-  <% end %>
-
 <h4>Friends</h4>
 <% for friendship in @user.friendships %>  
   <% if friendship.status == "accepted" %> 
