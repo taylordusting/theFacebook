@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @wallpost.content %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @wallpost.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_wallpost_path(@wallpost) %> |
+<%= link_to 'Back', wallposts_path %>

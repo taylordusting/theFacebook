@@ -1,4 +1,6 @@
 SampleApp::Application.routes.draw do
+  resources :wallposts
+
   resources :friendships
 
   resources :users do
