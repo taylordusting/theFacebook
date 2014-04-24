@@ -12,17 +12,17 @@
       <%= f.label :email %>
       <%= f.text_field :email %>
 
+      <%= f.label :interests, "Interests" %>
+      <%= f.text_area :interests %>
+
+      <%= f.label :quotes, "Favorite Quotes" %>
+      <%= f.text_area :quotes %>
+
       <%= f.label :password %>
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation, "Confirm Password" %>
       <%= f.password_field :password_confirmation %>
-
-      <%= f.label :interests, "Interests" %>
-      <%= f.text_field :interests %>
-
-      <%= f.label :quotes, "Favorite Quotes" %>
-      <%= f.text_field :quotes %>
 
       <%= f.submit "Save changes", class: "btn btn-large btn-inverse" %>
     <% end %>
