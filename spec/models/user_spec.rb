@@ -16,6 +16,7 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:microposts) }
+  it { should respond_to(:wallposts) }
   it { should respond_to(:feed) }
 
   it { should be_valid }
@@ -104,6 +105,28 @@ describe User do
     its(:remember_token) { should_not be_blank }
   end
 
+  describe "wallpost associations" do
+
+    before { @user.save }
+    let!(:older_wallpost) do
+      FactoryGirl.create(:wallpost, user: @user, friend: @friend, created_at: 1.day.ago)
+    end
+    let!(:newer_wallpost) do
+      FactoryGirl.create(:wallpost, user: @user, friend:@friend, created_at: 1.hour.ago)
+    end
+
+    it "should have the right wallposts in the right order" do
+      expect(@user.wallposts.to_a).to eq [newer_wallpost, older_wallpost]
+    end
+    it "should destroy associated wallposts" do
+      wallposts = @user.wallposts.to_a
+      @user.destroy
+      expect(wallposts).not_to be_empty
+      wallposts.each do |wallpost|
+        expect(Wallpost.where(id: wallpost.id)).to be_empty
+      end
+    end
+  end
   describe "micropost associations" do
 
     before { @user.save }

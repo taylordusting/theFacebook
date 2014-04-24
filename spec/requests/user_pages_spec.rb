@@ -34,6 +34,8 @@ describe "User pages" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
     let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+    let!(:w1) { FactoryGirl.create(:wallpost, user: user, friend: friend, content: "Foo") }
+    let!(:w2) { FactoryGirl.create(:wallpost, user: user, friend: friend, content: "Bar") }
 
     before { visit user_path(user) }
 
@@ -44,6 +46,12 @@ describe "User pages" do
       it { should have_content(m1.content) }
       it { should have_content(m2.content) }
       it { should have_content(user.microposts.count) }
+    end
+
+     describe "wallposts" do
+      it { should have_content(w1.content) }
+      it { should have_content(w2.content) }
+      it { should have_content(user.wallposts.count) }
     end
   end
 
