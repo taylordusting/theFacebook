@@ -1,0 +1,22 @@
+<% unless current_user?(@user) %>
+  <div id="friendship_form">
+  <% if current_user.friends.include?(@user) %>
+    <%= button_to "Unfriend", friendship_path(:id => @user), :method => :delete , data: { confirm: 'Are you sure you want to remove this friend?' } %>
+  <% elsif current_user.pending_friends.include?(@user) %>
+    <div>You already asked for friendship. Waiting for confirmation</div>
+    <%= form_for current_user.friendships.find_by_friend_id(@user),
+      :html => { :method => :delete },
+            :remote => true do |f| %>
+      <div class="actions"><%= f.submit "Remove friendship request" %></div>
+    <% end %>
+  <% elsif current_user.requested_friends.include?(@user) %>
+    <%= form_for current_user.friendships.find_by_friend_id(@user),
+      :html => {:method => :put},
+            :remote => true do |f| %>
+      <div class="actions"><%= f.submit "Confirm friendship" %></div>
+    <% end %>
+  <% else %>
+    <%= button_to "Add Friend", friendships_path(:id => @user), :method => :post %>
+  <% end %>
+  </div>
+<% end %>
