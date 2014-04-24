@@ -11,7 +11,6 @@ describe "Authentication" do
     it { should have_title('Sign in') }
   end
 
-
   describe "signin" do
     before { visit signin_path }
 
@@ -24,8 +23,8 @@ describe "Authentication" do
         before { click_link "Home" }
         it { should_not have_selector('div.alert.alert-error') }
       end
-
     end
+
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
       before do
@@ -66,6 +65,19 @@ describe "Authentication" do
         end
       end
 
+      describe "in the Wallposts controller" do
+
+        describe "submitting to the create action" do
+          before { post wallposts_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete wallpost_path(FactoryGirl.create(:wallpost)) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
+
       describe "in the Users controller" do
 
         describe "visiting the edit page" do
@@ -84,6 +96,7 @@ describe "Authentication" do
         end
       end
     end
+    
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }
       let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }

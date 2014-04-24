@@ -33,18 +33,19 @@
           <span id="requested_friends" class="stat">
             <%= pluralize(@user.requested_friends.count, "requested friend") %>
             <section>
-  <% unless current_user.requested_friends.empty? %>
-  <% current_user.requested_friends.each do |requester| %>
-  
-  <%= link_to "Accept #{requester.name}'s friend request", accept_friendship_path(requester.id), :method => :post %>
+			  <% unless current_user.requested_friends.empty? %>
+			  <% current_user.requested_friends.each do |requester| %>
+			  
+			  <%= link_to "Accept #{requester.name}'s friend request", accept_friendship_path(requester.id), :method => :post %>
 
-  <% end %>
-  <% end %>
-</section>
-          </span>
-        </a>
-      </td>
-
+			  <% end %>
+			  <% end %>
+			</section>
+			</span>
+		</a>
+	  </td>
     </tr>
   </table>
 </div>
+  <%= pluralize(current_user.wallposts.count, "wallpost") %>
+</span>
