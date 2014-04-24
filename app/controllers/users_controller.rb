@@ -5,7 +5,7 @@ before_action :correct_user,   only: [:edit, :update]
 before_action :admin_user,     only: :destroy
 
 def index
-	@users = User.paginate(page: params[:page])
+	@users = User.paginate(page: params[:page]).search(params[:search])
 end
 
 def show
@@ -15,7 +15,6 @@ end
 
 def new
 	@user = User.new
-  
 end
 
 def edit

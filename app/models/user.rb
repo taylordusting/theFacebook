@@ -11,10 +11,15 @@ class User < ActiveRecord::Base
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: {case_sensitive: false}
 	has_secure_password
-	validates :password, length: { minimum: 6 }
-  
-  
+	validates :password, length: { minimum: 6 }  
 
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

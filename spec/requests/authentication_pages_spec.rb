@@ -11,7 +11,6 @@ describe "Authentication" do
     it { should have_title('Sign in') }
   end
 
-
   describe "signin" do
     before { visit signin_path }
 
@@ -24,8 +23,8 @@ describe "Authentication" do
         before { click_link "Home" }
         it { should_not have_selector('div.alert.alert-error') }
       end
-
     end
+
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
       before do
@@ -84,6 +83,7 @@ describe "Authentication" do
         end
       end
     end
+    
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }
       let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
