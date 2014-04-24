@@ -1,5 +1,5 @@
 class WallpostsController < ApplicationController
-  before_action :set_wallpost, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user
 
   # GET /wallposts
   # GET /wallposts.json
@@ -24,16 +24,10 @@ class WallpostsController < ApplicationController
   # POST /wallposts
   # POST /wallposts.json
   def create
-    @wallpost = Wallpost.new(wallpost_params)
-
-    respond_to do |format|
-      if @wallpost.save
-        format.html { redirect_to @wallpost, notice: 'Wallpost was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @wallpost }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @wallpost.errors, status: :unprocessable_entity }
-      end
+     @wallpost = current_user.wallposts.build(wallpost_params)
+    if @wallpost.save
+      flash[:success] = "Wallpost created!"
+      redirect_to user_path
     end
   end
 
@@ -62,13 +56,12 @@ class WallpostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_wallpost
-      @wallpost = Wallpost.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
     def wallpost_params
-      params.require(:wallpost).permit(:content, :user_id)
+      params.require(:wallpost).permit(:content)
+    end
+  
+ def correct_user
+      @wallpost = current_user.wallposts.find_by(id: params[:id])
+      redirect_to root_url if @wallpost.nil?
     end
 end

@@ -11,3 +11,5 @@ tmp/*
 *.DS_Store
 *.swp
 *.out
+
+log/development.log

@@ -14,4 +14,8 @@ FactoryGirl.define do
     content "Lorem ipsum"
     user
   end
+  factory :wallpost do
+    content "This is a Wall Post"
+    user
+  end
 end
