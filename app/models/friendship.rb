@@ -2,6 +2,8 @@ class Friendship < ActiveRecord::Base
 belongs_to :friend, :class_name => "User", :foreign_key => "friend_id"
 belongs_to :user
 
+validates :user_id, :presence => true
+validates :friend_id, :presence => true
 
 	def self.exists?(user, friend)
 		not find_by_user_id_and_friend_id(user, friend).nil?

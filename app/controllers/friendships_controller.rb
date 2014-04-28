@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_action :set_friendship, only: [:show, :edit, :update, :destroy]
+  #before_action :set_friendship, only: [:show, :edit, :update, :destroy]
   before_filter :setup_friends
 
   def create
@@ -9,10 +9,21 @@ class FriendshipsController < ApplicationController
   end
   
   def destroy
-    Friendship.breakup(@user,@friend)
+    if current_user.requested_friends.include?(@user)
+      Friendship.breakup(current_user, @user)
+      flash[:notice] = "Removed friendship."
+    elsif current_user.pending_friends.include?(@user)
+      Friendship.breakup(current_user, @user)
+      flash[:notice] = "Removed friendship."
+    elsif current_user.friends.include?(@user)
+      Friendship.breakup(current_user, @user)
+      flash[:notice] = "Removed friendship."
+    else
+      flash[:notice] = "Not friends with this user"
+    end
     #@friendship = current_user.friendships.find(params[:id])
     #@friendship.destroy
-    flash[:notice] = "Removed friendship."
+    
     redirect_to current_user
   end
   # GET /friendships
@@ -88,9 +99,9 @@ class FriendshipsController < ApplicationController
 
   private
     #Use callbacks to share common setup or constraints between actions.
-    def set_friendship
-      @friendship = Friendship.find(params[:id])
-    end
+    #def set_friendship
+     # @friendship = Friendship.find(params[:id])
+    #end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def friendship_params

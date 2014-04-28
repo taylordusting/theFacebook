@@ -1,15 +1,35 @@
 <% @user ||= current_user %>
+<h3>Friends</h3>
 <div class="stats">
-  <a href="<%= following_user_path(@user) %>">
-    <strong id="following" class="stat">
-      <%= @user.followed_users.count %>
-    </strong>
-    following
-  </a>
-  <a href="<%= followers_user_path(@user) %>">
-    <strong id="followers" class="stat">
-      <%= @user.followers.count %>
-    </strong>
-    followers
-  </a>
+  <table summary="User stats">
+    <tr>
+      <td>
+        
+          <span id="friends" class="stat">
+            <%=pluralize(@user.friends.count, "friend") %>
+          </span>
+        </a>
+      </td>
+      <td>
+        
+          <span id="pending_friends" class="stat">
+            <%= pluralize(@user.pending_friends.count, "pending friend") %>
+          </span>
+        </a>
+      </td>
+      <td>
+        
+          <span id="requested_friends" class="stat">
+            <%= pluralize(@user.requested_friends.count, "requested friend") %>
+            <% current_user.requested_friends.each do |requester| %>
+            <%= link_to "Accept #{requester.name}'s friend request", accept_friendship_path(requester.id), :method => :post %>
+
+
+  <% end %>
+          </span>
+        </a>
+      </td>
+
+    </tr>
+  </table>
 </div>
