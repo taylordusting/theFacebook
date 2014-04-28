@@ -10,6 +10,26 @@
     
     <%= render 'friendship_form' if signed_in? %>
     
+    <% if current_user?(@user) %>
+      <h4>My Friends (<%=@user.friends.count%>)</h4>
+      <% for friendship in @user.friendships %>  
+        <% if friendship.status == "accepted" %> 
+        <li>  
+          <%= h friendship.friend.name %>  
+          (<%= link_to "remove", friendship_path(:id => friendship.friend.id ), :method => :delete , data: { confirm: 'Are you sure you want to remove this friend?' } %>)  
+        </li>
+      <% end %>  
+    <% end %>
+  <% else %>
+    <h4>Friends</h4>
+    <% for friendship in @user.friendships %>  
+      <% if friendship.status == "accepted" %> 
+       <li>  
+          <%= h friendship.friend.name %> 
+       </li>
+      <% end %>  
+    <% end %>
+  <% end %>
     <div>
       <h5> Interests </h5>
       <%=@user.interests%>
