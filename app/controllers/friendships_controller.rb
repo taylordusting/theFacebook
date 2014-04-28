@@ -9,14 +9,14 @@ class FriendshipsController < ApplicationController
   end
   
   def destroy
-    if current_user.requested_friends.include?(@user)
-      Friendship.breakup(current_user, @user)
+    if current_user.requested_friends.include?(@friend)
+      Friendship.breakup(current_user, @friend)
       flash[:notice] = "Removed friendship."
-    elsif current_user.pending_friends.include?(@user)
-      Friendship.breakup(current_user, @user)
+    elsif current_user.pending_friends.include?(@friend)
+      Friendship.breakup(current_user, @friend)
       flash[:notice] = "Removed friendship."
-    elsif current_user.friends.include?(@user)
-      Friendship.breakup(current_user, @user)
+    elsif current_user.friends.include?(@friend)
+      Friendship.breakup(current_user, @friend)
       flash[:notice] = "Removed friendship."
     else
       flash[:notice] = "Not friends with this user"
