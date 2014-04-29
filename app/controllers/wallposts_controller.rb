@@ -25,10 +25,10 @@ class WallpostsController < ApplicationController
   # POST /wallposts.json
   def create
     
-     @wallpost = current_user.wallposts.build(content: params[:wallpost][:content])
+     @wallpost = current_user.wallposts.build(wallpost_params)
     if @wallpost.save
       flash[:success] = "Wallpost created!"
-      redirect_to :action => :show
+      redirect_to user_path(current_user)
     else
       flash[:failure] = @wallpost.errors
       redirect_to root_url
