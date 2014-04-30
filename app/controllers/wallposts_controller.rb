@@ -28,7 +28,7 @@ class WallpostsController < ApplicationController
     @wallpost = @postee.wallposts.build(wallpost_params)
     if @wallpost.save
       flash[:success] = "Wallpost created!"
-      redirect_to user_path(current_use)
+      redirect_to user_path(@postee)
     else
       flash[:failure] = @wallpost.errors
       redirect_to root_url
