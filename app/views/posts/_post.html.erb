@@ -1,0 +1,12 @@
+<li>
+  <h5>Posted by:</h5><%= post.poster.name %>
+  <span class="content"><%= post.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(post.created_at) %> ago.
+  </span>
+  <% if current_user?(post.poster) %>
+    <%= link_to "delete", wallpost_path, method: :delete,
+                                     data: { confirm: "Are you sure?" },
+                                     title: post.content %>
+  <% end %>
+</li>
