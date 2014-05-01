@@ -45,7 +45,7 @@
     </section>
     <% if @user.microposts.any? | @user.wallposts.any? %>
       <ol class="microposts">
-        <%= render @microposts + @wallposts%>
+        <%= render @wallposts + @microposts%>
       </ol>
       <%= will_paginate @microposts %>
       <%= will_paginate @wallposts %>
