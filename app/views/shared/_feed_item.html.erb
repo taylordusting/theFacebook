@@ -1,6 +1,7 @@
 <li id="<%= feed_item.id %>">
   
   <% if current_user?(feed_item.poster) %>
+    <h5>Your Status Update:</h5>
     <%= link_to gravatar_for(feed_item.posted), feed_item.posted %>
     <span class="user">
       <%= link_to feed_item.posted.name, feed_item.posted %>
@@ -10,9 +11,25 @@
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
     </span>
 
-    <%= link_to "delete", feed_item, method: :delete, data: { confirm: "Are you sure?" }, title: feed_item.content %>
-  <% else %>
+    <%= link_to "delete", wallpost_path(:id => feed_item.id), method: :delete, data: { confirm: "Are you sure?" }, title: feed_item.content %>
+  
+  <% elsif feed_item.poster != feed_item.posted %>
+
+    <h5><%=feed_item.poster.name%> posted on <%=feed_item.posted.name%>'s Wall:</h5>
+    
     <%= link_to gravatar_for(feed_item.poster), feed_item.poster %>
+    <span class="user">
+      <%= link_to feed_item.poster.name, feed_item.poster %>
+    </span>
+    <span class="content"><%= feed_item.content %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+    </span>
+  <% else %>
+
+  <h5>Status Update:</h5>
+  
+  <%= link_to gravatar_for(feed_item.poster), feed_item.poster %>
     <span class="user">
       <%= link_to feed_item.poster.name, feed_item.poster %>
     </span>

@@ -42,7 +42,7 @@ def create
 	if @user.save
  	 sign_in @user
   	 flash[:success] = "Welcome to the Facebook!"
-  	 redirect_to @user
+  	 redirect_to root_url
 	else
   	 render 'new'
 	end
