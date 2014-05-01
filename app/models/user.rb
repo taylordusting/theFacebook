@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :microposts, dependent: :destroy
   has_many :wallposts, dependent: :destroy
+  has_many :posts, foreign_key: "posted_id", dependent: :destroy
   has_many :friendships
   has_many :friends,
            :through => :friendships,
@@ -42,12 +43,16 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    Micropost.from_users_friended_by(self)
+    Post.from_users_friended_by(self)
   end
 
   #def following?(other_user)
    #relationships.find_by(followed_id: other_user.id)
   #end
+
+  def write!(other_user)
+    wallposts.create!(posted_id: other_user.id)
+  end
 
   def friended(other_user)
     relationships.create!(followed_id: other_user.id)
