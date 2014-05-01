@@ -43,6 +43,15 @@
     <section>
       <%= render 'shared/wallpost_form' %>
     </section>
+    
+    <% if @user.posts.any? %>
+      <ol class="microposts">
+        <%= render @posts %>
+      </ol>
+      <%= will_paginate @posts %>
+    <% end %>
+    
+    <!--
     <% if @user.microposts.any? | @user.wallposts.any? %>
       <ol class="microposts">
         <%= render @wallposts + @microposts%>
@@ -50,6 +59,7 @@
       <%= will_paginate @microposts %>
       <%= will_paginate @wallposts %>
     <% end %>
+    -->
   </div>
 </div>
 
