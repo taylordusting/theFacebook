@@ -24,13 +24,15 @@ class WallpostsController < ApplicationController
   # POST /wallposts
   # POST /wallposts.json
   def create
+    @posted = User.find(params[:wallpost][:posted_id])
     
-     @wallpost = current_user.wallposts.build(wallpost_params)
-    if @wallpost.save
+    @post = @posted.posts.create!(:poster_id => current_user.id, :content=>
+                       params[:wallpost][:content])
+    if @post.save
       flash[:success] = "Wallpost created!"
-      redirect_to user_path(current_user)
+      redirect_to user_path(@posted)
     else
-      flash[:failure] = @wallpost.errors
+      flash[:failure] = @post.errors
       redirect_to root_url
     end
 
@@ -62,7 +64,7 @@ class WallpostsController < ApplicationController
 
   private
     def wallpost_params
-      params.require(:wallpost).permit(:content)
+      params.require(:wallpost).permit(:content, :posted_id)
     end
   
  def correct_user
