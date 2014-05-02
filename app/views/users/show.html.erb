@@ -31,7 +31,7 @@
       <% end %>  
     <% end %>
   <% end %>
-  <% if current_user.friends.include?(@user) %>
+  <% if current_user.friends.include?(@user) || current_user?(@user) %>
     <div>
       <h5> Interests </h5>
       <%=@user.interests%>
@@ -62,7 +62,11 @@
     <!--
     <% if @user.microposts.any? | @user.wallposts.any? %>
       <ol class="microposts">
+<<<<<<< HEAD
+        <%= render @wallposts + @microposts%>
+=======
          <%= render @wallposts + @microposts%>
+>>>>>>> d700112ae6a5cdd2a92fe4754a24435e922e03bd
       </ol>
       <%= will_paginate @wallposts %>
       <%= will_paginate @microposts %>

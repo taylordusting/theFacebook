@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   def self.from_users_friended_by(user)
 
   	friend_user_ids = "SELECT friend_id FROM friendships"
-    where("posted_id AND poster_id IN (#{friend_user_ids}) OR posted_id = :user_id",
+    where("poster_id IN (#{friend_user_ids}) OR posted_id = :user_id",
           user_id: user.id)
   end
 	#followed_user_ids = user.friends
