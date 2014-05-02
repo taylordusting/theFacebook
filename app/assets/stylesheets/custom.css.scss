@@ -15,6 +15,9 @@ $grayMediumLight: #eaeaea;
 }
 
 /* universal */
+header{
+  background-color: #FF000;
+}
 
 html {
   overflow-y: scroll;
@@ -74,6 +77,7 @@ p {
       float: left;
       margin-left: 10px;
       text-transform:capitalize;
+      background-color: #FF000;
     }
 }
 
@@ -84,7 +88,6 @@ p {
   margin-right: 10px;
   font-size: 1.7em;
   color: white;
-  text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
