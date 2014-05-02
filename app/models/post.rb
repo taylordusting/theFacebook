@@ -6,9 +6,9 @@ class Post < ActiveRecord::Base
   validates :posted_id, presence: true
 
   def self.from_users_friended_by(user)
-  	followed_user_ids = "SELECT friend_id FROM friendships
+  	friend_user_ids = "SELECT friend_id FROM friendships
                          WHERE friend_id = :user_id"
-    where("posted_id IN (#{followed_user_ids}) OR posted_id = :user_id",
+    where("posted_id IN (#{friend_user_ids}) OR poster_id = :user_id OR posted_id = :user_id",
           user_id: user.id)
   end
 	#followed_user_ids = user.friends
