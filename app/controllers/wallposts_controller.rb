@@ -26,8 +26,8 @@ class WallpostsController < ApplicationController
   def create
     @posted = User.find(params[:wallpost][:posted_id])
     
-    @post = @posted.posts.create!(:poster_id => current_user.id, :content=>
-                       params[:wallpost][:content])
+    @post = @posted.posts.create!(:poster => current_user, :content=>
+                       params[:wallpost][:content], :posted => @posted)
     if @post.save
       flash[:success] = "Wallpost created!"
       redirect_to user_path(@posted)
@@ -55,9 +55,12 @@ class WallpostsController < ApplicationController
   # DELETE /wallposts/1
   # DELETE /wallposts/1.json
   def destroy
-    @wallpost.destroy
+    @post = Post.find(params[:id])
+    #@wallpost.destroy
+    @post.destroy
+    flash[:notice] = "Post has been deleted"
     respond_to do |format|
-      format.html { redirect_to wallposts_url }
+      format.html { redirect_to root_url }
       format.json { head :no_content }
     end
   end
@@ -68,6 +71,7 @@ class WallpostsController < ApplicationController
     end
   
  def correct_user
+      @post = current_user.posts.find_by(id: params[:id])
       @wallpost = current_user.wallposts.find_by(id: params[:id])
       redirect_to root_url if @wallpost.nil?
     end

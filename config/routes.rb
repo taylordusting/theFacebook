@@ -9,7 +9,6 @@ SampleApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :wallposts, only: [:create, :destroy]
-  resources :posts, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]
   resources :friendships do
     post 'accept', :on => :member

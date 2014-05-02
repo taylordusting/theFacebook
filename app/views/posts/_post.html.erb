@@ -1,5 +1,9 @@
 <li>
-  <h5>Posted by:</h5><%= post.poster.name %>
+  <% if current_user?(post.poster) %>
+    <h5>Status Update:</h5>
+  <% else %>
+    <h5>Posted by: <%=link_to post.poster.name, post.poster %></h5>
+  <% end %>
   <span class="content"><%= post.content %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(post.created_at) %> ago.

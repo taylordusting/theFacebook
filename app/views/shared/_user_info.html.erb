@@ -6,7 +6,7 @@
   <%= link_to "view my profile", current_user %>
 </span>
 <span>
-  <%= pluralize(current_user.microposts.count, "micropost") %>
+  <%= pluralize(current_user.posts.count, "post") %>
 </span>
 <br>
 <% @user ||= current_user %>
@@ -33,7 +33,5 @@
   	</li>
   	<% end %>
   </ul>
-
-  <%= pluralize(current_user.wallposts.count, "wallpost") %>
 
 </span>

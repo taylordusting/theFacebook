@@ -39,7 +39,7 @@
   </aside>
 
   <div class="span8">
-    <h3>Wall (<%= @user.microposts.count + @user.wallposts.count%>)</h3>
+    <h3>Wall (<%= @user.posts.count%>)</h3>
     <section>
       <%= render 'shared/wallpost_form' %>
     </section>
