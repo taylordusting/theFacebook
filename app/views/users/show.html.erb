@@ -21,34 +21,42 @@
       <% end %>  
     <% end %>
   <% else %>
+
     <h4>Friends</h4>
     <% for friendship in @user.friendships %>  
       <% if friendship.status == "accepted" %> 
        <li>  
-          <%= h friendship.friend.name %> 
+          <%= link_to friendship.friend.name, friendship.friend %> 
        </li>
       <% end %>  
     <% end %>
   <% end %>
+  <% if current_user.friends.include?(@user) %>
     <div>
       <h5> Interests </h5>
       <%=@user.interests%>
       <h5> Quotes </h5>
       <%=@user.quotes %>
     </div>
+    <% end %>
   </aside>
 
   <div class="span8">
-    <h3>Wall (<%= @user.posts.count%>)</h3>
-    <section>
-      <%= render 'shared/wallpost_form' %>
-    </section>
     
-    <% if @user.posts.any? %>
-      <ol class="microposts">
-        <%= render @posts %>
-      </ol>
-      <%= will_paginate @posts %>
+    <% if current_user.friends.include?(@user) %>
+      <h3>Wall (<%= @user.posts.count%>)</h3>
+      <section>
+        <%= render 'shared/wallpost_form' %>
+      </section>
+    
+      <% if @user.posts.any? %>
+        <ol class="microposts">
+         <%= render @posts %>
+        </ol>
+        <%= will_paginate @posts %>
+      <% end %>
+    <% else %>
+      <h3> You must be friends to see their Wall </h3>
     <% end %>
     
     <!--
