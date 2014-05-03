@@ -21,7 +21,7 @@
   <% end %>
   
     <% if feed_item.poster != feed_item.posted %>
-
+      <% if feed_item.poster != current_user %>
       <h5><%=feed_item.poster.name%> posted on <%=feed_item.posted.name%>'s Wall:</h5>
       
       <%= link_to gravatar_for(feed_item.poster), feed_item.poster %>
@@ -32,6 +32,7 @@
       <span class="timestamp">
         Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
       </span>
+      <% end %>
     <% else %>
       <% if !current_user?(feed_item.posted) %>
       <h5>Status Update:</h5>
