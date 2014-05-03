@@ -22,7 +22,7 @@
     <% end %>
   <% else %>
 
-    <h4>Friends</h4>
+    <h4>Friends (<%=@user.friends.count%>)</h4>
     <% for friendship in @user.friendships %>  
       <% if friendship.status == "accepted" %> 
        <li>  
