@@ -4,7 +4,7 @@
   
   <% if current_user?(feed_item.poster) %>
     <% if feed_item.poster != feed_item.posted %>
-      <h5>You posted on <%link_to feed_item.posted.name, feed_item.posted%>'s Wall</h5>
+      <h5>You posted on <%= link_to feed_item.posted.name, feed_item.posted %>'s Wall</h5>
     <% else %>
       <h5>Your Status Update:</h5>
     <% end %>
@@ -33,7 +33,7 @@
         Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
       </span>
     <% else %>
-      <% if !current_user?(feed_item.posted) %>
+      <% if !current_user?(feed_item.Posted) %>
       <h5>Status Update:</h5>
       
       <%= link_to gravatar_for(feed_item.poster), feed_item.poster %>
