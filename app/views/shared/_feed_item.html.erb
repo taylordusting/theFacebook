@@ -33,7 +33,7 @@
         Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
       </span>
     <% else %>
-      <% if !current_user?(@user) %>
+      <% if !current_user?(feed_item.posted) %>
       <h5>Status Update:</h5>
       
       <%= link_to gravatar_for(feed_item.poster), feed_item.poster %>
