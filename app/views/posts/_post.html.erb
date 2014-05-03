@@ -1,5 +1,5 @@
 <li>
-  <% if current_user?(post.poster) %>
+  <% if current_user?(post.posted) %>
     <h5>Status Update:</h5>
   <% else %>
     <h5>Posted by: <%=link_to post.poster.name, post.poster %></h5>
