@@ -43,7 +43,7 @@
 
   <div class="span8">
     
-    <% if current_user.friends.include?(@user) %>
+    <% if current_user.friends.include?(@user) || current_user?(@user) %>
       <h3>Wall (<%= @user.posts.count%>)</h3>
       <section>
         <%= render 'shared/wallpost_form' %>
